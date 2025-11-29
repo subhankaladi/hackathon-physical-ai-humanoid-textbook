@@ -29,7 +29,7 @@ export default function Home() {
         <div style={{ marginTop: "40px" }}>
           <Link
             className="button button--primary button--lg"
-            to="/introduction/intro"
+            to="/docs/introduction/intro"
           >
             Start Reading →
           </Link>
