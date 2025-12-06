@@ -10,6 +10,7 @@ The project will be implemented in four distinct phases, prioritizing foundation
 
 ## Phase 1: Project Setup (Estimated: 60 min)
 
+
 ### Goal
 Establish the foundational Docusaurus v3 project structure, including necessary configuration files and base directories for content, specifications, RAG backend, and bonus features, ready for GitHub Pages deployment.
 
