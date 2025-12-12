@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools"
+
+[project]
+name = "docusaurus-embedding-pipeline"
+version = "0.1.0"
+description = "Pipeline to extract text from Docusaurus sites, generate embeddings, and store in Qdrant"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.2",
+    "cohere>=4.9.0",
+    "qdrant-client>=1.9.0",
+    "python-dotenv>=1.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "flake8>=6.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

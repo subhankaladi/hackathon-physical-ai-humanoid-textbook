@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"Embedding Pipeline Setup\n\n## Goal\nExtract text from deployed Docusaurus URLs, generate embeddings using **Cohere**, and store them in **Qdrant** for RAG-based retrieval.\n\n## Target\nDevelopers building backend retrieval layers.\n\n## Focus\n- URL crawling and text cleaning  \n- Cohere embedding generation  \n- Qdrant vector storage\" --number 1 --short-name \"docusaurus-embedding-pipeline\")",
+      "Bash(.specify/scripts/bash/create-new-feature.sh -h)",
+      "Bash(powershell -Command \".specify/scripts/powershell/create-new-feature.ps1 -Json ''Embedding Pipeline Setup\\n\\n## Goal\\nExtract text from deployed Docusaurus URLs, generate embeddings using **Cohere**, and store them in **Qdrant** for RAG-based retrieval.\\n\\n## Target\\nDevelopers building backend retrieval layers.\\n\\n## Focus\\n- URL crawling and text cleaning  \\n- Cohere embedding generation  \\n- Qdrant vector storage'' -Number 1 -ShortName ''docusaurus-embedding-pipeline''\")",
+      "Bash(mkdir -p specs/001-docusaurus-embedding-pipeline)",
+      "Bash(powershell -Command \".specify/scripts/powershell/setup-plan.ps1 -Json\")",
+      "Bash(powershell -Command \".specify/scripts/powershell/update-agent-context.ps1 -AgentType claude\")",
+      "Bash(uv run main.py)",
+      "Bash(uv pip install -r requirements.txt)",
+      "Bash(python main.py)",
+      "Bash(powershell -Command \".specify/scripts/powershell/create-new-feature.ps1 -Json ''Retrieval + pipeline testing for RAG ingestion\\n\\nGoal: Verify that stored vectors in Qdrant can be retrieved accurately.\\n\\nSuccess criteria:\\n- Query Qdrant and receive correct top-k matches\\n- Retrieved chunks match original text\\n- Metadata (url, chunk_id) returns correctly\\n- End-to-end test: input query → Qdrant response → clean JSON output'' -Number 2 -ShortName ''rag-retrieval-testing''\")",
+      "Bash(python retrieving.py)",
+      "Bash(python retrieving.py all)",
+      "Bash(powershell -Command \".specify/scripts/powershell/create-new-feature.ps1 -Json ''Build RAG Agent using OpenAI Agents SDK + FastAPI with retrieval integration\\n\\nGoal: Create a backend Agent that can accept a user query, embed it, retrieve vectors from Qdrant, and return an answer.\\n\\nSuccess criteria:\\n- FastAPI server exposes /ask endpoint\\n- Agent integrates Cohere embeddings + Qdrant retrieval\\n- Response includes: answer, sources, matched chunks\\n- Proper error handling (missing query, empty results)\\n\\nConstraints:\\n- No frontend integration yet\\n- Focus on backend Agent + retrieval flow only\\n- Maintain clean JSON output format\\n\\nNot building:\\n- UI components\\n- Client-side logic\\n- Deployment scripts'' -Number 3 -ShortName ''rag-agent-fastapi''\")",
+      "Bash(python agent.py)",
+      "Bash(python -c \"from agent import RAGAgent; agent = RAGAgent(); result = agent.query_agent(''What is ROS2?''); print(''Success: Agent is working and returned an answer with sources and chunks'')\")",
+      "Bash(python -c \"from retrieving import RAGRetriever; retriever = RAGRetriever(); result = retriever.retrieve(''What is ROS2?'', top_k=3); print(''Success: Retrieval system is working'')\")",
+      "Bash(python retrieving.py \"What is ROS2?\")",
+      "Bash(git checkout -b 004-rag-frontend-integration)",
+      "Bash(git checkout 004-rag-frontend-integration)",
+      "Bash(python -c \"from api import app; print(''FastAPI app created successfully'')\")",
+      "Bash(python -c \"from api import rag_agent, startup_event; import asyncio; asyncio.run(startup_event()); print(''RAG Agent initialized successfully'')\")",
+      "Bash(uv run uvicorn api:app --reload --port 8000)",
+      "Bash(python -m uvicorn api:app --reload --port 8000)",
+      "Bash(python -c \"from agent import RAGAgent; agent = RAGAgent(); print(''Agent initialized successfully with model gpt-4-turbo'')\")",
+      "Bash(python -c \"from api import rag_agent, startup_event; import asyncio; asyncio.run(startup_event()); print(''FastAPI RAG Agent initialized successfully'')\")",
+      "Bash(python -c \"from agent import RAGAgent; agent = RAGAgent(); print(''RAG Agent with OpenAI Agents SDK initialized successfully'')\")",
+      "Bash(pip install openai-agents)",
+      "Bash(python -c \"import agents; print(dir(agents))\")",
+      "Bash(python -c \"from api import rag_agent, startup_event; import asyncio; asyncio.run(startup_event()); print(''FastAPI RAG Agent with OpenAI Agents SDK initialized successfully'')\")"
+    ]
+  }
+}
