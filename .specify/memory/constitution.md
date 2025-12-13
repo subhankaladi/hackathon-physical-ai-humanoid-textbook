@@ -1,50 +1,56 @@
-<!-- Sync Impact Report:
-Version change: 1.0.0 → 1.1.0
-Modified principles:
-  - Interdisciplinary Collaboration (new)
-  - Ethical AI Development (new)
-  - Robustness & Safety Engineering (new)
-  - Human-Robot Interaction Design (new)
-  - Continuous Learning & Adaptation (new)
-Added sections:
-  - Technical Standards
-  - Research & Development Workflow
-Removed sections:
-  - None
+<!-- SYNC IMPACT REPORT
+Version change: N/A -> 1.0.0
+Modified principles: N/A (initial constitution)
+Added sections: All principles and sections (initial constitution)
+Removed sections: N/A
 Templates requiring updates:
-  - .specify/templates/plan-template.md (⚠ pending)
-  - .specify/templates/spec-template.md (⚠ pending)
-  - .specify/templates/tasks-template.md (⚠ pending)
-  - .specify/templates/commands/*.md (⚠ pending)
-Follow-up TODOs:
-  - None
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/spec-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/commands/*.md ⚠ pending
+Follow-up TODOs: None
 -->
-# Physical AI & Humanoid Robotics Constitution
+
+# Physical AI & Humanoid Robotics — AI/Spec-Driven Book with Integrated RAG Chatbot Constitution
 
 ## Core Principles
 
-### I. Interdisciplinary Collaboration
-This principle stresses the importance of collaboration across AI, robotics, biomechanics, cognitive science, and ethics. Successful development in Physical AI and Humanoid Robotics requires integrating diverse expertise to address complex challenges comprehensively.
+### Technical Accuracy and Source Verification
+All technical claims and factual statements must be backed by credible sources such as research papers, official documentation (ROS 2, NVIDIA Isaac, OpenAI), or primary sources in robotics and AI. No unverified technical assertions are permitted in the content.
 
-### II. Ethical AI Development
-This principle highlights the necessity of ethical standards, human well-being, autonomy, privacy, fairness, bias detection, transparency, and accountability. All development must prioritize the responsible creation and deployment of AI systems, ensuring they serve humanity beneficially and justly.
+### Clarity for Target Audience
+Content must be designed for clarity and accessibility for developers, AI engineers, and robotics students. Writing should maintain Flesch-Kincaid grade level 10-12 to ensure broad comprehension while preserving technical precision.
 
-### III. Robustness & Safety Engineering
-This principle emphasizes engineering for extreme robustness, reliability, and safety in unpredictable environments, including rigorous risk assessment and testing. Physical AI systems must be designed to operate dependably and securely, minimizing risks to users and the environment.
+### Reproducibility of Code and Systems
+All code examples, simulations, and system designs must be fully reproducible. Code correctness and build reproducibility are required. Every implementation must include clear setup instructions and verification steps.
 
-### IV. Human-Robot Interaction Design
-This principle focuses on intuitive, natural, and trustworthy human-robot interaction, considering psychological, social, and cultural factors. Designing for seamless and acceptable interaction is crucial for the successful integration of humanoid robotics into society.
+### Theory-Practice Integration
+Practical rigor is essential: theoretical concepts must be backed by implementation demonstrations and practical examples. Theory without corresponding implementation or demonstration is insufficient.
 
-### V. Continuous Learning & Adaptation
-This principle includes the concept of systems designed to continuously learn, adapt, and improve through real-world interaction. Physical AI systems must possess the capability to evolve their understanding and performance over time, responding to new data and experiences.
+### Standardized Citations
+All factual and technical claims must be source-backed using APA citation format. Acceptable source types include peer-reviewed research papers, official documentation from relevant platforms (ROS 2, NVIDIA Isaac, OpenAI), and authoritative technical resources.
 
-## Technical Standards
-Development must leverage advanced simulation environments for testing and validation, along with robust hardware-software co-design principles to ensure optimal performance and integration of physical and digital components.
+## Technology and Platform Standards
 
-## Research & Development Workflow
-The workflow must be iterative and hypothesis-driven, encouraging rapid prototyping and experimentation. It should also include regular peer review and mechanisms for effective knowledge transfer across teams and disciplines.
+The project must adhere to the following technology stack and platform requirements:
+- Format: Docusaurus book deployed to GitHub Pages
+- Embedded RAG chatbot answering book-only and user-selected text queries
+- Technologies: Spec-Kit Plus, Claude Code, OpenAI Agents SDK, FastAPI, Qdrant, Neon
+- Modules must align with ROS 2, Gazebo, Isaac, and VLA stack
+
+## Development Workflow
+
+The project follows Spec-Driven Development (SDD) methodology with the following requirements:
+- Strict adherence to specification-driven development process
+- All implementations must reference the specification
+- Changes to specifications require formal approval process
+- All code changes must include appropriate tests
+- Documentation updates must accompany all functional changes
 
 ## Governance
-This constitution supersedes all other practices. Amendments require thorough documentation, multi-stakeholder approval, and a clear migration plan. All development and operational practices must align with the core principles outlined herein. Compliance will be reviewed annually to ensure ongoing adherence to ethical, safety, and performance standards.
 
-**Version**: 1.1.0 | **Ratified**: 2025-01-01 | **Last Amended**: 2025-11-28
+This constitution establishes the foundational principles that govern all aspects of the Physical AI & Humanoid Robotics book project. All development activities, documentation, and architectural decisions must comply with these principles. Deviations require formal constitutional amendments with proper justification and approval.
+
+All pull requests and reviews must verify compliance with these principles. Any complexity introduced must be justified by clear benefits to the core mission of creating a technically accurate, reproducible, and accessible resource for physical AI and humanoid robotics.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-13 | **Last Amended**: 2025-12-13
