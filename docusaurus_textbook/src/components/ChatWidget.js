@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import axios from 'axios';
-import './chat.css';
+import { useState } from "react";
+import axios from "axios";
+import "./chat.css";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -9,49 +9,54 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    if (!input.trim()) return;
-    
+    if (!input.trim() || loading) return;
+
     const userMessage = { sender: "user", text: input };
     const currentInput = input;
-    
-    setMessages(prev => [...prev, userMessage]);
+
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
-    
+
     try {
-      console.log("Sending message:", currentInput);
-      
-      const res = await axios.post("https://subhankaladi-deploy-youtube.hf.space/ask", {
-        message: currentInput
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const res = await axios.post(
+        "https://subhankaladi-deploy-youtube.hf.space/ask",
+        {
+          query: currentInput   // ✅ FIXED: backend expects "query"
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          timeout: 15000        // ✅ RAG-safe timeout
         }
-      });
-      
-      console.log("Response received:", res);
-      console.log("Response data:", res.data);
-      
-      const botReply = res.data.reply || res.data.response || res.data.message || "No response from server";
-      const botMessage = { sender: "bot", text: botReply };
-      
-      setMessages(prev => [...prev, botMessage]);
+      );
+
+      const botReply = res.data?.answer || "No answer returned";
+
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: botReply }
+      ]);
+
     } catch (err) {
-      console.error("Chat error details:", err);
-      console.error("Error response:", err.response);
-      
-      const errorMsg = err.response?.data?.error || err.message || "Unable to reach server";
-      setMessages(prev => [...prev, { 
-        sender: "bot", 
-        text: `Error: ${errorMsg}` 
-      }]);
+      const errorMsg =
+        err.response?.data?.error ||
+        err.message ||
+        "Server not reachable";
+
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: `Error: ${errorMsg}` }
+      ]);
+
     } finally {
       setLoading(false);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !loading) {
+    if (e.key === "Enter" && !loading) {
       sendMessage();
     }
   };
@@ -61,29 +66,33 @@ export default function ChatWidget() {
       <button className="chat-button" onClick={() => setOpen(!open)}>
         💬 Chat
       </button>
+
       {open && (
         <div className="chat-box">
           <div className="chat-header">
             <strong>AI Assistant</strong>
           </div>
+
           <div className="chat-body">
             {messages.map((m, i) => (
               <div key={i} className={`bubble ${m.sender}`}>
                 {m.text}
               </div>
             ))}
+
             {loading && (
               <div className="bubble bot">
-                <em>Typing...</em>
+                <em>Thinking...</em>
               </div>
             )}
           </div>
+
           <div className="chat-input">
-            <input 
+            <input
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Type message..."
+              placeholder="Type your question..."
               disabled={loading}
             />
             <button onClick={sendMessage} disabled={loading}>
