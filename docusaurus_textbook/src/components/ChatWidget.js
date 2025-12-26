@@ -21,7 +21,7 @@ export default function ChatWidget() {
     try {
       console.log("Sending message:", currentInput);
       
-      const res = await axios.post("https://subhankaladi-deploy-youtube.hf.space/chat", {
+      const res = await axios.post("https://subhankaladi-deploy-youtube.hf.space/ask", {
         message: currentInput
       }, {
         headers: {
